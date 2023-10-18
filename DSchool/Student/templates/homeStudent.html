@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+    
+            <h1>Votre planning</h1>
+            <a class="btn btn-dark" href="{% url 'Student:student-detail' planning.student.id %}">Retour</a>
+            <table class="table table-bordered table-striped table-hover mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Heure</th>
+                        <th scope="col">Instructor</th>
+                        <th scope="col">Adresse</th>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ planning.date|date:"d-m-Y"  }}</td>
+                        <td>{{ planning.date|date:"H:i" }}</td>
+                        <td>{{ planning.instructor.username }}</td>
+                        <td>{{ planning.place }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

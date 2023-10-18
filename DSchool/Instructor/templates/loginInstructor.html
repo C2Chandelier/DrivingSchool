@@ -1,0 +1,14 @@
+<div>
+    <h1>Welcome aboard Referent !</h1>
+
+    <form method="post" role="form" action="{% url 'Instructor:loginInstructor' %}">
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        <input type="submit" value="Login" />
+    </form>
+    <a href="{% url 'Student:loginStudent' %}">Student ? Cliquez ici pour vous connecter</a>
+</div>

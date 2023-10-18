@@ -1,0 +1,9 @@
+    <form method="post">
+        {% csrf_token %}
+        {{ form.student }}
+        {{ form.instructor }}
+        <input type="datetime-local" name="{{ form.date.name }}" value="{{ form.date.value|default:'' }}" required>
+        {{ form.place }}
+        
+        <button type="submit">Enregistrer</button>
+    </form>
