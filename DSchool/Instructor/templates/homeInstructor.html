@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
+  {% if plannings %}
     <h1>Planning Instructor</h1>
+    
     <table>
         <tr>
           <th>Student</th>
@@ -17,6 +19,9 @@
         </tr>
     {% endfor %}
       </table>
+      {% else %}
+      <p>Vous n'avez pas encore de rendez-vous</p>
+      {% endif %}
     <button><a href="{% url 'Instructor:addPlanningInstructor' %}">Ajouter un RDV</a></button>
     <button><a href="{% url 'Instructor:detailInstructor' %}">Mon profil</a></button>  
 </div>
