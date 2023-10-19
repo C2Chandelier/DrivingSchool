@@ -24,7 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Student.urls')),
     path('instructor/', include('Instructor.urls')),
-    path('secretary/', include('Secretary.urls')),
-    path('DSchool/', include('DSchool.urls')),  
+    path('secretary/', include('Secretary.urls')),  
     path('logout/', LogoutView.as_view(), name='logout'),
 ]

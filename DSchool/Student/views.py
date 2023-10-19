@@ -1,22 +1,23 @@
 from django.shortcuts import render, redirect
-from django.template import loader
 from django.views.generic import DetailView
-
 from Secretary.models import Planning
-
 from .forms import LoginForm
 from .models import Student
 
-class PlanningView(DetailView):
-    model = Planning 
-    template_name = 'Student/homeStudent.html'  
-    context_object_name = 'planning' 
-
 def homeStudent(request):
     if "user_id" in request.session and request.session['user_role'] == 'student':
-        return PlanningView.as_view()(request)
+        context = {
+            'planning': Planning.objects.filter(student__id=request.session['user_id']).first(),
+        }
+        return render(request, 'homeStudent.html', context)
     else:
         return redirect('Student:loginStudent')
+    
+def detailStudent(request):
+    context = {
+        'student': Student.objects.get(pk=request.session['user_id']),
+    }
+    return render(request, 'detailStudent.html', context)
 
 def loginStudent(request):
     if request.method == 'POST':
@@ -46,7 +47,7 @@ def loginStudent(request):
 
 
 
-def student(request):
+""" def student(request):
     student_list= Student.objects.all()
     template = loader.get_template("DSchool/student.html")
     context = {
@@ -64,13 +65,8 @@ def planning(request):
     return HttpResponse(template.render(context, request))
 
 
-class StudentView(DetailView):
-    model = Student  
-    template_name = 'DSchool/student_detail.html'  
-    context_object_name = 'student'
-
 
 class PlanningView(DetailView):
     model = Planning 
     template_name = 'DSchool/planning.html'  
-    context_object_name = 'planning'    
+    context_object_name = 'planning'     """

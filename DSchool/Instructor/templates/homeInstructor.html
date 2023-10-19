@@ -5,21 +5,20 @@
     <table>
         <tr>
           <th>Student</th>
-          <th>Instructor</th>
           <th>Date-hour</th>
           <th>Place</th>
         </tr>
     {% for planning in plannings %}
         <tr>
-          <td><a href="{% url 'Instructor:student_profile' planning.student.id %}">{{ planning.student }}</a></td>
-          <td><a href="{% url 'Instructor:instructor_profile' planning.instructor.id %}">{{ planning.instructor }}</a></td>
+          <td><a href="{% url 'Instructor:studentProfile' planning.student.id %}">{{ planning.student }}</a></td>
           <td>{{ planning.date|date:"d-m-Y" }}</td>
           <td>{{ planning.date|date:"H:i" }}</td>
           <td>{{ planning.place }}</td>
         </tr>
     {% endfor %}
       </table>
-    <button><a href="{% url 'Instructor:new_entry' %}">Ajouter un RDV</a></button>  
+    <button><a href="{% url 'Instructor:addPlanningInstructor' %}">Ajouter un RDV</a></button>
+    <button><a href="{% url 'Instructor:detailInstructor' %}">Mon profil</a></button>  
 </div>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Planning
+from Secretary.models import Planning
 
 class LoginForm(forms.Form):
     username = forms.CharField()

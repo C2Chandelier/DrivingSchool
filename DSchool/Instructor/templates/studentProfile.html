@@ -1,4 +1,5 @@
 <div>
+    {% if student%}
     <table>
         <tr>
             <th>Username</th>
@@ -10,5 +11,7 @@
             <td>{{ student.h_total }}</td>
             <td>{{ student.h_remaining }}</td>
         </tr>
-    </table>   
+    </table>
+    {% endif %}  
+    <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
 </div> 

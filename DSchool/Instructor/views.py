@@ -9,27 +9,26 @@ from django.views import generic
 def homeInstructor(request):
     if "user_id" in request.session and request.session['user_role'] == 'instructor':
         
-        plannings = Planning.objects.filter(instructor=2)
+        plannings = Planning.objects.filter(instructor__id=request.session['user_id']).first(),
         context ={
             'plannings': plannings
         }
-        return render(request, 'planning.html',context)
+        return render(request, 'homeInstructor.html',context)
 
     else:
         return redirect('Instructor:loginInstructor')
     
     
-class StudentProfileView(generic.DetailView):
-    model = Student
-    template_name = 'student_profile.html'
-    context_object_name = 'student'
+def profileStudent(request, student_id):
+    return render(request, 'studentProfile.html', {'student': Student.objects.get(pk=student_id)})
 
-class InstructorProfileView(generic.DetailView):
-    model = Instructor
-    template_name = 'instructor_profile.html'
-    context_object_name = 'instructor'
+def detailInstructor(request):
+    context = {
+        'instructor': Instructor.objects.get(pk=request.session['user_id']),
+    }
+    return render(request, 'detailInstructor.html', context)
 
-def add_entry_planning(request):
+def addPlanningInstructor(request):
     if request.method == 'POST':
         form = PlanningForm(request.POST)
         if form.is_valid():
@@ -38,7 +37,7 @@ def add_entry_planning(request):
     else:
         form = PlanningForm()
     
-    return render(request, 'DSchool/new_entry.html', {'form': form})
+    return render(request, 'addPlanningInstructor.html', {'form': form})
       
 
 def loginInstructor(request):
