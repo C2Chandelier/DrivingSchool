@@ -3,7 +3,6 @@ from .models import Instructor
 from Secretary.models import Secretary, Planning
 from Student.models import Student
 from .forms import LoginForm, PlanningForm
-from django.views import generic
 
 
 def homeInstructor(request):
