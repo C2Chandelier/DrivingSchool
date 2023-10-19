@@ -58,7 +58,7 @@ LOGOUT_REDIRECT_URL = 'Student:loginStudent'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['DSChool/templates','Student/templates','Instructor/templates','Secretary/templates'],
+        'DIRS': ['DSchool/templates','Student/templates','Instructor/templates','Secretary/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
