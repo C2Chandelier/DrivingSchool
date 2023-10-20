@@ -20,5 +20,9 @@ urlpatterns =[
     path('instructor/<int:pk>/delete', views.deleteInstructor, name='deleteInstructor'),
     path('confirmInsctructor/<int:pk>/to-delete', views.confirmDeleteInstructor, name='confirmDeleteInstructor'),
     path('instructor/<int:pk>/edit', views.editInstructor, name='editInstructor'),
+    path('secretary/planning/<int:planning_id>/modifier/', views.modifierPlanning, name='modifierPlanning'),
+    path('confirmDeletePanning/<int:planning_id>/', views.confirmDeletePlanning, name='confirmDeletePlanning'),
+    path('supprimerPlanning/<int:planning_id>/', views.supprimerPlanning, name='supprimerPlanning'),
+
 ]
 
