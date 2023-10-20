@@ -6,7 +6,7 @@ from .models import Student
 def homeStudent(request):
     if "user_id" in request.session and request.session['user_role'] == 'student':
         context = {
-            'planning': Planning.objects.filter(student__id=request.session['user_id']).order_by('date'),
+            'plannings': Planning.objects.filter(student__id=request.session['user_id']).order_by('date'),
         }
         return render(request, 'homeStudent.html', context)
     else:
@@ -40,32 +40,3 @@ def loginStudent(request):
 
     return render(request, 'loginStudent.html', {'form': form})
 
-
-
-   
-
-
-
-""" def student(request):
-    student_list= Student.objects.all()
-    template = loader.get_template("DSchool/student.html")
-    context = {
-        "student_list": student_list,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-def planning(request):
-    planning_list= Planning.objects.all()
-    template = loader.get_template("DSchool/planning-all.html")
-    context = {
-        "planning_liste": planning_list,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-
-class PlanningView(DetailView):
-    model = Planning 
-    template_name = 'DSchool/planning.html'  
-    context_object_name = 'planning'     """

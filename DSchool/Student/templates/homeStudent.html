@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container-fluid">
-    {% if planning %}
+    {% if plannings %}
     <div class="row justify-content-center mt-5">
         <div class="col-8">
     
@@ -19,6 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for planning in plannings %}
                     <tr>
                         <td>{{ planning.date|date:"d-m-Y"  }}</td>
                         <td>{{ planning.date|date:"H:i" }}</td>
@@ -26,6 +27,7 @@
                         <td>{{ planning.place }}</td>
                     </tr>
                 </tbody>
+                    {% endfor %}
             </table>
         </div>
     </div>

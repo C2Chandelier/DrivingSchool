@@ -1,5 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Confirm{% endblock %}
+{% block content %}
+<div>
 <form method="post" action="{% url 'Instructor:supprimer_planning' planning.id %}">
     {% csrf_token %}
     <p>Êtes-vous sûr de vouloir supprimer le RDV avec  {{ planning.student }} le {{ planning.date|date:"d-m-Y" }} à {{ planning.date|date:"H:i" }} ?</p>
     <input type="submit" value="Confirmer la suppression">
 </form>
+    <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
+</div>
+{% endblock %}

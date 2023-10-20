@@ -1,4 +1,6 @@
-
+{% extends "base.html" %}
+{% block title %}Profil{% endblock %}
+{% block content %}
 <div>
        {% if instructor %}
        {{ instructor }} 
@@ -7,3 +9,4 @@
        <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
 
 </div>
+{% endblock %}

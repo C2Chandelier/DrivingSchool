@@ -1,10 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Profil Student{% endblock %}
+{% block content %}
 <div>
     {% if student%}
     <table>
         <tr>
             <th>Username</th>
             <th>Total hour</th>
-            <th>Hour use</th>
+            <th>Hour remaining</th>
         </tr>
         <tr>
             <td>{{ student.username }}</td>
@@ -15,3 +18,5 @@
     {% endif %}  
     <a class="btn btn-dark" href="{% url 'Instructor:homeInstructor' %}">Retour au planning</a>
 </div> 
+{% endblock %}
+```
