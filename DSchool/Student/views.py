@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
 from Secretary.models import Planning
 from .forms import LoginForm
 from .models import Student
@@ -7,7 +6,7 @@ from .models import Student
 def homeStudent(request):
     if "user_id" in request.session and request.session['user_role'] == 'student':
         context = {
-            'planning': Planning.objects.filter(student__id=request.session['user_id']).first(),
+            'planning': Planning.objects.filter(student__id=request.session['user_id']).order_by('date'),
         }
         return render(request, 'homeStudent.html', context)
     else:
