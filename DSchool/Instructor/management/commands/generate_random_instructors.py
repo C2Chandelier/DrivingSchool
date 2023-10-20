@@ -16,9 +16,11 @@ class Command(BaseCommand):
         # Generate random student records
         for _ in range(100):
             username = fake.user_name()
+            name = fake.user_name()
+            lastname = fake.user_name()
             password = generate_random_password()
 
-            instructor = Instructor(username=username, password=password)
+            instructor = Instructor(username=username, password=password, name=name, lastname=lastname)
             instructor.save()
 
         self.stdout.write(self.style.SUCCESS('Successfully generated random instructor records'))

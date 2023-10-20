@@ -12,7 +12,7 @@ class StudentAdmin(admin.ModelAdmin):
     search_fields = ["username"]
 
 class InstructorAdmin(admin.ModelAdmin):
-    list_display = ["username", "password"]
+    list_display = ["username", "password","name","lastname"]
     search_fields = ["username"]
 
 class SecretaryAdmin(admin.ModelAdmin):
