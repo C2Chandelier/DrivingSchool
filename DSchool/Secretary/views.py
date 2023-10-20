@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Planning
 from Student.models import Student
 from Instructor.models import Instructor
-from .forms import AddPlanningForm, StudentForm, InstructorForm, AddPlanningFormInstructor, PlanningFormModif
+from .forms import AddPlanningForm, StudentForm, InstructorForm, AddPlanningFormInstructor, PlanningFormModif, PlanningFormAddGeneral
 from django.contrib import messages
 
 def homeSecretary(request):
@@ -191,3 +191,20 @@ def supprimerPlanning(request, planning_id):
     if request.method == 'POST':
         planning.delete()
     return redirect('Secretary:homeSecretary')
+
+def addPlanningGeneral(request):
+    if request.method == 'POST':
+        form = PlanningFormAddGeneral(request.POST)
+        if form.is_valid():
+            student = form.cleaned_data['student']
+            if student.h_remaining > 0:
+                student.h_remaining -= 1
+                student.save()
+                form.save()
+                return redirect('Secretary:homeSecretary')
+            else:
+                messages.error(request, "Cet étudiant n'as plus de crédit")
+                return redirect('Secretary:addPlanningGeneral')
+    else:
+        form = PlanningFormAddGeneral()
+    return render(request, 'addPlanningGeneral.html', {'form': form})

@@ -23,6 +23,6 @@ urlpatterns =[
     path('secretary/planning/<int:planning_id>/modifier/', views.modifierPlanning, name='modifierPlanning'),
     path('confirmDeletePanning/<int:planning_id>/', views.confirmDeletePlanning, name='confirmDeletePlanning'),
     path('supprimerPlanning/<int:planning_id>/', views.supprimerPlanning, name='supprimerPlanning'),
-
+    path('addPlanningGeneral/', views.addPlanningGeneral, name='addPlanningGeneral'),
 ]
 

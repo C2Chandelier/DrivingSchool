@@ -31,4 +31,13 @@ class PlanningFormModif(forms.ModelForm):
         date = forms.DateTimeField(
             widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             input_formats=['%Y-%m-%dT%H:%M'],
-        )    
+        )  
+
+class PlanningFormAddGeneral(forms.ModelForm):
+    class Meta:
+        model = Planning
+        fields = [ "student","instructor","date", "place"]
+        date = forms.DateTimeField(
+            widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            input_formats=['%Y-%m-%dT%H:%M'],
+        )      
