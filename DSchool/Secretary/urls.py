@@ -16,6 +16,5 @@ urlpatterns =[
     path('instructorList/', views.instructorList, name='instructorList'),
     path('instructor/<int:pk>/planning', views.planningInstructor, name='planningInstructor'),
     path('instructor/addInstructor', views.addInstructor, name='addInstructor'),
-    path('instructor/<int:pk>/addPlanning', views.addPlanningInstructor, name='addPlanningInstructor'),
 ]
 
