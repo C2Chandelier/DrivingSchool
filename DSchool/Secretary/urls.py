@@ -16,12 +16,9 @@ urlpatterns =[
     path('instructorList/', views.instructorList, name='instructorList'),
     path('instructor/<int:pk>/planning', views.planningInstructor, name='planningInstructor'),
     path('instructor/addInstructor', views.addInstructor, name='addInstructor'),
-<<<<<<< HEAD
-=======
-    path('instructor/<int:pk>/addPlanning', views.addPlanningInstructor, name='addPlanningInstructor'),
+    path('instructor/<int:pk>/addPlanning', views.addPlanningIns, name='addPlanningIns'),
     path('instructor/<int:pk>/delete', views.deleteInstructor, name='deleteInstructor'),
     path('confirmInsctructor/<int:pk>/to-delete', views.confirmDeleteInstructor, name='confirmDeleteInstructor'),
     path('instructor/<int:pk>/edit', views.editInstructor, name='editInstructor'),
->>>>>>> 5e3437d6f5988e267abd6946bc92533fdeed66d9
 ]
 
