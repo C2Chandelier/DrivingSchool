@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .custom-form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="custom-form mx-auto">
+                <h2 class="text-center mb-4">Student Form</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group ">
+                        {{ form.username.label_tag }}
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group ">
+                        {{ form.password.label_tag }}
+                        {{ form.password }}
+                    </div>
+                    <div class="form-group ">
+                        {{ form.h_total.label_tag }}
+                        {{ form.h_total }}
+                    </div>
+                    <div class="form-group ">
+                        {{ form.h_remaining.label_tag }}
+                        {{ form.h_remaining }}
+                    </div>
+                    <button type="submit" class="btn btn-dark">Enregistrer</button>
+                    <a class="btn btn-dark" href="{% url 'DSchool:student-list'%}">Retour</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
