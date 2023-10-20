@@ -2,12 +2,19 @@
 {% block content %}
 <div>
   {% if plannings %}
-    <h1>Planning Instructor</h1>
-    
+  <h1>Planning Instructor</h1>
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
     <table>
         <tr>
           <th>Student</th>
-          <th>Date-hour</th>
+          <th>Date</th>
+          <th>Hour</th>
           <th>Place</th>
         </tr>
     {% for planning in plannings %}
@@ -16,6 +23,8 @@
           <td>{{ planning.date|date:"d-m-Y" }}</td>
           <td>{{ planning.date|date:"H:i" }}</td>
           <td>{{ planning.place }}</td>
+          <td><a href="{% url 'Instructor:modifier_entry' planning.id %}">Modifier</a></td>
+          <td><a href="{% url 'Instructor:confirmer_suppression' planning.id %}">Supprimer</a></td>
         </tr>
     {% endfor %}
       </table>
