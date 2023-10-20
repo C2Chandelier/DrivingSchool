@@ -11,7 +11,7 @@ class StudentForm(forms.ModelForm):
 class InstructorForm(forms.ModelForm):
     class Meta:
         model = Instructor
-        fields = ['username', 'password'] 
+        fields = ['username', 'password','name','lastname'] 
 
 
 class AddPlanningForm(forms.ModelForm):

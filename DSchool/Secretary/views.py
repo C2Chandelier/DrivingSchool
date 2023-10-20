@@ -105,7 +105,7 @@ def editInstructor(request, pk):
            form.save()
            return redirect('Secretary:instructorList')
 
-    return render(request, 'editStudent.html', {'form': form, 'instructor': instructor})
+    return render(request, 'editInstructor.html', {'form': form, 'instructor': instructor})
   
 
 def editStudent(request, pk):

@@ -15,12 +15,16 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Nom d'utilisateur</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>
                         <th scope="col">Voir son planning</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{ instructor.username }}</td>
+                        <td>{{ instructor.name }}</td>
+                        <td>{{ instructor.lastname }}</td>
                         <td><a class="btn btn-dark" href="{% url 'Secretary:planningInstructor' instructor.id %}">Voir son planning</a></td>
                     </tr>
                 </tbody>
