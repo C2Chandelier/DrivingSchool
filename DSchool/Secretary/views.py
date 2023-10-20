@@ -150,7 +150,7 @@ def addPlanning(request, pk):
 
     return render(request, 'addPlanning.html', {'form': form, 'student': student})
 
-def addPlanningInstructor(request, pk):    
+def addPlanningIns(request, pk):    
     instructor = get_object_or_404(Instructor, pk=pk)
     if request.method == 'POST':
         form = AddPlanningFormInstructor(request.POST)
@@ -168,5 +168,5 @@ def addPlanningInstructor(request, pk):
     else:
         form = AddPlanningFormInstructor()
 
-    return render(request, 'addPlanningInstructor.html', {'form': form, 'instructor': instructor})
+    return render(request, 'addPlanningIns.html', {'form': form, 'instructor': instructor})
 
