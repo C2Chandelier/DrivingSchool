@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Profil{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
+{% endif %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+
+
+            <h1>Détails de l'étudiant : {{ student.username }}</h1>
+            <a class="btn btn-dark" href="{% url 'Secretary:homeSecretary'%}">Retour</a>
+
+            <table class="table table-bordered table-striped table-hover mt-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nom d'utilisateur</th>
+                        <th scope="col">Total d'heures</th>
+                        <th scope="col">Heures restantes</th>
+                        <th scope="col">Planning</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ student.username }}</td>
+                        <td>{{ student.h_total }}</td>
+                        <td>{{ student.h_remaining }}</td>
+                        <td><a class="btn btn-dark" href="{% url 'Secretary:planningStudent' student.id %}">Voir son planning</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

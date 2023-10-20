@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Confirm{% endblock %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-4">
+
+            <h1> Êtes-vous sûr de vouloir supprimer l'étudiant {{ student.username }} ?</h1>
+            <a class="btn btn-danger" href="{% url 'Secretary:deleteStudent' student.id %}">Confirmer la suppression</a>
+            <a class="btn btn-secondary" href="{% url 'Secretary:studentList' %}">Annuler</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

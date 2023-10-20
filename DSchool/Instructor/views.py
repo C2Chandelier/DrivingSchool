@@ -3,7 +3,6 @@ from .models import Instructor
 from Secretary.models import Secretary, Planning
 from Student.models import Student
 from .forms import LoginForm, PlanningFormAdd, PlanningFormModif
-from django.views import generic
 from django.contrib import messages
 
 
