@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Profil Student{% endblock %}
+{% block content %}
+<div>
+    {% if student%}
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Total hour</th>
+            <th>Hour remaining</th>
+        </tr>
+        <tr>
+            <td>{{ student.username }}</td>
+            <td>{{ student.h_total }}</td>
+            <td>{{ student.h_remaining }}</td>
+        </tr>
+    </table>
+    {% endif %}
+    <a class="btn btn-dark" href="{% url 'Secretary:homeSecretary' %}">Retour au planning général</a>
+</div>
+{% endblock %}

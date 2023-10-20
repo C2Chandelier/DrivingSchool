@@ -10,29 +10,33 @@
         {% endfor %}
     </ul>
   {% endif %}
-    <table>
+    <table class="table table-bordered table-striped table-hover mt-4">
+      <thead class="thead-dark">
         <tr>
           <th>Student</th>
           <th>Date</th>
           <th>Hour</th>
           <th>Place</th>
+          <th>Modifier</th>
+          <th>Supprimer</th>
         </tr>
+        </thead>
     {% for planning in plannings %}
         <tr>
-          <td><a href="{% url 'Instructor:studentProfile' planning.student.id %}">{{ planning.student }}</a></td>
+          <td><a class="btn btn-dark" href="{% url 'Instructor:studentProfile' planning.student.id %}">{{ planning.student }}</a></td>
           <td>{{ planning.date|date:"d-m-Y" }}</td>
           <td>{{ planning.date|date:"H:i" }}</td>
           <td>{{ planning.place }}</td>
-          <td><a href="{% url 'Instructor:modifier_entry' planning.id %}">Modifier</a></td>
-          <td><a href="{% url 'Instructor:confirmer_suppression' planning.id %}">Supprimer</a></td>
+          <td><a class="btn btn-warning" href="{% url 'Instructor:modifier_entry' planning.id %}">Modifier</a></td>
+          <td><a class="btn btn-danger" href="{% url 'Instructor:confirmer_suppression' planning.id %}">Supprimer</a></td>
         </tr>
     {% endfor %}
       </table>
       {% else %}
       <p>Vous n'avez pas encore de rendez-vous</p>
       {% endif %}
-    <button><a href="{% url 'Instructor:addPlanningInstructor' %}">Ajouter un RDV</a></button>
-    <button><a href="{% url 'Instructor:detailInstructor' %}">Mon profil</a></button>  
+    <a class="btn btn-primary" href="{% url 'Instructor:addPlanningInstructor' %}">Ajouter un RDV</a>
+    <a class="btn btn-primary" href="{% url 'Instructor:detailInstructor' %}">Mon profil</a>  
 </div>
 
 {% endblock %}
