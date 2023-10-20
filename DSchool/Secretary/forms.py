@@ -18,3 +18,8 @@ class AddPlanningForm(forms.ModelForm):
     class Meta:
         model = Planning
         fields = ['instructor', 'date', 'place']
+
+class AddPlanningFormInstructor(forms.ModelForm):
+    class Meta:
+        model = Planning
+        fields = ['student', 'date', 'place']

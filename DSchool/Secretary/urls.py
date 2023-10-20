@@ -17,5 +17,8 @@ urlpatterns =[
     path('instructor/<int:pk>/planning', views.planningInstructor, name='planningInstructor'),
     path('instructor/addInstructor', views.addInstructor, name='addInstructor'),
     path('instructor/<int:pk>/addPlanning', views.addPlanningInstructor, name='addPlanningInstructor'),
+    path('instructor/<int:pk>/delete', views.deleteInstructor, name='deleteInstructor'),
+    path('confirmInsctructor/<int:pk>/to-delete', views.confirmDeleteInstructor, name='confirmDeleteInstructor'),
+    path('instructor/<int:pk>/edit', views.editInstructor, name='editInstructor'),
 ]
 
