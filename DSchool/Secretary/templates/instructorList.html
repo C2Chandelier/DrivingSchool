@@ -12,6 +12,7 @@
     <div class="col-6">
         <h1>Driving School</h1>
         <h2>instructors</h2>
+        <a class="btn btn-primary" href="{% url 'Secretary:homeSecretary' %}">Back</a>
         <a class="btn btn-dark" href="{% url 'Secretary:addInstructor' %}">Add an instructor</a>
         {% if instructor_list%}
         <table class="table table-bordered table-striped table-hover mt-4">
@@ -26,8 +27,7 @@
                 {% for instructor in instructor_list%}
                 <tr>
 
-                    <td><a class="btn btn-link" href="{% url 'Secretary:instructorDetail' instructor.id %}">{{
-                            instructor.username }}</a></td>
+                    <td><a class="btn btn-link" href="{% url 'Secretary:instructorDetail' instructor.id %}">{{ instructor.username }}</a></td>
                     {% if instructor.planning_set.all %}
                     <td><a class="btn btn-dark" href="{% url 'Secretary:planningInstructor' instructor.id %}">Voir le
                             planning</a>

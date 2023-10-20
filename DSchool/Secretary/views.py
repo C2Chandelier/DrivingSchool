@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Planning
 from Student.models import Student
 from Instructor.models import Instructor
-from .forms import AddPlanningForm, StudentForm, InstructorForm
+from .forms import AddPlanningForm, StudentForm, InstructorForm, AddPlanningFormInstructor
 from django.contrib import messages
 
 def homeSecretary(request):
@@ -65,8 +65,8 @@ def addInstructor(request):
             form.save() 
             return redirect('Secretary:instructorList')  
     else:
-        form = StudentForm()
-    return render(request, 'addStudent.html', {'form': form})
+        form = InstructorForm()
+    return render(request, 'addInstructor.html', {'form': form})
 
 
 def addStudent(request):
@@ -88,6 +88,24 @@ def deleteStudent(request, pk):
     student = get_object_or_404(Student, pk=pk)
     student.delete() 
     return redirect('Secretary:studentList')
+
+def confirmDeleteInstructor(request, pk):
+    instructor = get_object_or_404(Instructor, pk=pk)
+    return render(request, 'confirmDeleteInstructor.html', {'instructor': instructor})
+
+def deleteInstructor(request, pk):
+    instructor = get_object_or_404(Instructor, pk=pk)
+    instructor.delete() 
+    return redirect('Secretary:instructorList')
+
+def editInstructor(request, pk):
+    instructor = get_object_or_404(Instructor, pk=pk)
+    form = InstructorForm(request.POST or None, instance=instructor)
+    if request.method == 'POST' and form.is_valid():
+           form.save()
+           return redirect('Secretary:instructorList')
+
+    return render(request, 'editStudent.html', {'form': form, 'instructor': instructor})
   
 
 def editStudent(request, pk):
@@ -131,4 +149,24 @@ def addPlanning(request, pk):
         form = AddPlanningForm()
 
     return render(request, 'addPlanning.html', {'form': form, 'student': student})
+
+def addPlanningInstructor(request, pk):    
+    instructor = get_object_or_404(Instructor, pk=pk)
+    if request.method == 'POST':
+        form = AddPlanningFormInstructor(request.POST)
+        if form.is_valid():
+            student = form.cleaned_data['student']
+            if student.h_remaining > 0:
+                student.h_remaining -= 1
+                student.save()
+                form.instance.instructor = instructor
+                form.save()
+                return redirect('Secretary:instructorDetail', pk=instructor.id)
+            else:
+                messages.error(request, "Cet étudiant n'as plus de crédit")
+                return redirect('Secretary:instructorDetail', pk=instructor.id)
+    else:
+        form = AddPlanningFormInstructor()
+
+    return render(request, 'addPlanningInstructor.html', {'form': form, 'instructor': instructor})
 
