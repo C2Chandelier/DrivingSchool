@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}instructor{% endblock %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
+{% endif %}
+<div class="row justify-content-center mt-5">
+    <div class="col-6">
+        <h1>Driving School</h1>
+        <h2>instructors</h2>
+        <a class="btn btn-primary" href="{% url 'Secretary:homeSecretary' %}">Back</a>
+        <a class="btn btn-dark" href="{% url 'Secretary:addInstructor' %}">Add an instructor</a>
+        {% if instructor_list%}
+        <table class="table table-bordered table-striped table-hover mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nom d'utilisateur</th>
+                    <th scope="col">Planning</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for instructor in instructor_list%}
+                <tr>
+
+                    <td><a class="btn btn-link" href="{% url 'Secretary:instructorDetail' instructor.id %}">{{ instructor.username }}</a></td>
+                    {% if instructor.planning_set.all %}
+                    <td><a class="btn btn-dark" href="{% url 'Secretary:planningInstructor' instructor.id %}">Voir le
+                            planning</a>
+                    </td>
+                    {% else %}
+                    <td>
+                        <a href="{% url 'Secretary:addPlanningInstructor' instructor.id %}" class="btn btn-info">Ajouter un RDV</a>
+                    </td>
+                    {% endif %}
+                    <td class="d-flex">
+                        <a class="btn btn-danger"
+                            href="{% url 'Secretary:confirmDeleteInstructor' instructor.id %}">Supprimer</a>
+
+                        <a href="{% url 'Secretary:editInstructor' instructor.id %}" class="btn btn-warning ml-2">Modifier</a>
+
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

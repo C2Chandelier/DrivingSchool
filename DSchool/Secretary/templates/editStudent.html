@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Edit{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <div class="custom-form mx-auto">
+            <h2 class="text-center mb-4">Student Form</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group ">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                <div class="form-group ">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
+                <div class="form-group ">
+                    {{ form.h_total.label_tag }}
+                    {{ form.h_total }}
+                </div>
+                <div class="form-group ">
+                    {{ form.h_remaining.label_tag }}
+                    {{ form.h_remaining }}
+                </div>
+                <button type="submit" class="btn btn-dark">Valider</button>
+                <a class="btn btn-dark" href="{% url 'Secretary:studentList'%}">Retour</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```
