@@ -1,0 +1,8 @@
+<form method="post">
+    {% if error_message %}<p>{{ error_message }}</p>{% endif %}
+    {% csrf_token %}
+    {{ form.student }}
+    {{ form.date }}
+    {{ form.place }}
+    <input type="submit" value="Enregistrer les modifications">
+</form>

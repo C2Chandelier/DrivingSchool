@@ -6,11 +6,20 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class PlanningForm(forms.ModelForm):
+class PlanningFormAdd(forms.ModelForm):
     class Meta:
         model = Planning
-        fields = ["student", "instructor", "date", "place"]
+        fields = ["student", "date", "place"]
         date = forms.DateTimeField(
             widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             input_formats=['%Y-%m-%dT%H:%M'],
         )
+
+class PlanningFormModif(forms.ModelForm):
+    class Meta:
+        model = Planning
+        fields = [ "date", "place"]
+        date = forms.DateTimeField(
+            widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            input_formats=['%Y-%m-%dT%H:%M'],
+        )        
