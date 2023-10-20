@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Planning
 from Student.models import Student
 from Instructor.models import Instructor
-from .forms import AddPlanningForm, StudentForm, InstructorForm, AddPlanningFormInstructor
+from .forms import AddPlanningForm, StudentForm, InstructorForm, AddPlanningFormInstructor, PlanningFormModif
 from django.contrib import messages
 
 def homeSecretary(request):
@@ -170,3 +170,24 @@ def addPlanningIns(request, pk):
 
     return render(request, 'addPlanningIns.html', {'form': form, 'instructor': instructor})
 
+def modifierPlanning(request, planning_id):
+    planning = get_object_or_404(Planning, pk=planning_id)
+    form = PlanningFormModif(request.POST, instance=planning)
+    if form.is_valid():
+        form.instance.instructor = planning.instructor
+        form.instance.student = planning.student
+        form.save()
+        return redirect('Secretary:homeSecretary')
+    else:
+        form = PlanningFormModif(instance=planning)
+    return render(request, 'modifierPlanning.html', {'form': form, 'planning': planning })
+
+def confirmDeletePlanning(request, planning_id):
+    planning = get_object_or_404(Planning, pk=planning_id)
+    return render(request, 'confirmDeletePlanning.html', {'planning': planning})
+
+def supprimerPlanning(request, planning_id):
+    planning = get_object_or_404(Planning, pk=planning_id)
+    if request.method == 'POST':
+        planning.delete()
+    return redirect('Secretary:homeSecretary')

@@ -15,6 +15,7 @@
 
             <h1>Planning de {{student.username}}</h1>
             <a href="{% url 'Secretary:addPlanning' student.id %}" class="btn btn-info">Ajouter un RDV</a>
+            <a class="btn btn-dark" href="{% url 'Secretary:homeSecretary'%}">Retour</a>    
 
             <table class="table table-bordered table-striped table-hover mt-4">
                 <thead class="thead-dark">
@@ -23,6 +24,8 @@
                         <th scope="col">Heure</th>
                         <th scope="col">Instructor</th>
                         <th scope="col">Adresse</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Supprimer</th>
 
                     </tr>
                 </thead>
@@ -33,6 +36,8 @@
                         <td>{{ plan.date|date:"H:i" }}</td>
                         <td>{{ plan.instructor.username }}</td>
                         <td>{{ plan.place }}</td>
+                        <td><a class="btn btn-warning" href="{% url 'Secretary:modifierPlanning' plan.id %}">Modifier</a></td>
+                        <td><a class="btn btn-danger" href="{% url 'Secretary:confirmDeletePlanning' plan.id %}">Supprimer</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -41,7 +46,6 @@
         </div>
     </div>
 </div>
-<a class="btn btn-dark" href="{% url 'Secretary:homeSecretary'%}">Retour</a>
 
 {% endblock %}
 ```
